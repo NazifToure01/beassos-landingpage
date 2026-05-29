@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const client = await clientPromise;
+    const client = await clientPromise();
     const db = client.db('beassoslandingpage');
     const collection = db.collection('waitlist');
 
