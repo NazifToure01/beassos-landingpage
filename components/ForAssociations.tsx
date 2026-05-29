@@ -55,8 +55,8 @@ export default function ForAssociations() {
               ))}
             </div>
 
-            <a href="#download" className="store-btn inline-flex mt-10 text-white" style={{ background: 'var(--color-primary)' }}>
-              Créer la page de mon association →
+            <a href="#waitlist" className="store-btn inline-flex mt-10 text-white" style={{ background: 'linear-gradient(135deg,#F79D0D,#FFB534)', boxShadow: '0 4px 16px rgba(247,157,13,0.35)', fontWeight: 700 }}>
+              Inscrire mon association →
             </a>
           </div>
 

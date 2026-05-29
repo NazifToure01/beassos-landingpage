@@ -4,20 +4,16 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
 
-type NavLink = {
-  label: string;
-  href: string;
-};
+type NavLink = { label: string; href: string };
 
 const NAV_LINKS: NavLink[] = [
   { label: 'Fonctionnalités', href: '#fonctionnalites' },
-  { label: 'Comment ça marche', href: '#comment-a-marche' },
+  { label: 'Comment ça marche', href: '#comment-ca-marche' },
   { label: 'Associations', href: '#associations' },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -25,8 +21,8 @@ export default function Navbar() {
       aria-label="Navigation principale"
       className="sticky top-0 z-50"
       style={{
-        background: 'rgba(243,242,239,0.88)',
-        backdropFilter: 'blur(14px)',
+        background: 'rgba(245,243,238,0.90)',
+        backdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--color-border)',
       }}
     >
@@ -47,28 +43,30 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link text-sm font-medium"
-                style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}
+                className="nav-link text-sm"
+                style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', fontWeight: 600 }}
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA — amber to match app identity */}
           <a
-            href="#download"
+            href="#waitlist"
             className="store-btn hidden sm:inline-flex text-white"
             style={{
-              background: 'var(--color-primary)',
+              background: 'linear-gradient(135deg, #F79D0D, #FFB534)',
               padding: '10px 20px',
               fontSize: 14,
+              fontWeight: 700,
+              boxShadow: '0 4px 14px rgba(247,157,13,0.35)',
             }}
           >
-            Télécharger l'app
+            Être notifié
           </a>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger */}
           <button
             className="sm:hidden"
             style={{ color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: 4, lineHeight: 0 }}
@@ -77,16 +75,12 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            {menuOpen ? (
-              <IoCloseOutline size={26} />
-            ) : (
-              <IoMenuOutline size={26} />
-            )}
+            {menuOpen ? <IoCloseOutline size={26} /> : <IoMenuOutline size={26} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu panel */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div
           id="mobile-menu"
@@ -98,12 +92,10 @@ export default function Navbar() {
             borderTop: '1px solid var(--color-border)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
             position: 'absolute',
-            left: 0,
-            right: 0,
+            left: 0, right: 0,
             zIndex: 40,
           }}
         >
-          {/* Close button (top-right) */}
           <div className="flex justify-end" style={{ padding: '12px 24px 0' }}>
             <button
               onClick={closeMenu}
@@ -113,17 +105,13 @@ export default function Navbar() {
               <IoCloseOutline size={24} />
             </button>
           </div>
-
-          {/* Nav links */}
-          <ul
-            style={{ listStyle: 'none', margin: 0, padding: '8px 0 16px' }}
-          >
+          <ul style={{ listStyle: 'none', margin: 0, padding: '8px 0 16px' }}>
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
                   onClick={closeMenu}
-                  className="text-base font-medium"
+                  className="text-base font-semibold"
                   style={{
                     display: 'block',
                     padding: '14px 24px',
@@ -137,22 +125,22 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-
-          {/* CTA button */}
           <div style={{ padding: '16px 24px 24px' }}>
             <a
-              href="#download"
+              href="#waitlist"
               onClick={closeMenu}
               className="store-btn text-white"
               style={{
-                background: 'var(--color-primary)',
+                background: 'linear-gradient(135deg, #F79D0D, #FFB534)',
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
                 fontSize: 15,
+                fontWeight: 700,
+                boxShadow: '0 4px 14px rgba(247,157,13,0.30)',
               }}
             >
-              Télécharger l'app
+              Être notifié du lancement
             </a>
           </div>
         </div>
